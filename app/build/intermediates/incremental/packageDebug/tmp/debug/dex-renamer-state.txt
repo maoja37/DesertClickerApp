@@ -1,4 +1,4 @@
-#Thu Jun 03 05:19:47 WAT 2021
-base.0=C\:\\Users\\maoja\\Downloads\\NewShit\\DessertClicker-Starter\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
+#Mon Jun 07 23:57:06 WAT 2021
+base.0=C\:\\Users\\Muyiwa\\StudioProjects\\DesertClickerApp\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
+path.0=classes.dex
