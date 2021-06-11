@@ -30,6 +30,8 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private var revenue = 0
     private var dessertsSold = 0
     private lateinit var dessertTimer: DessertTimer
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             onDessertClicked()
         }
 
-        dessertTimer = DessertTimer()
+        dessertTimer = DessertTimer(this.lifecycle)
 
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -156,9 +158,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Timber.i("onSaveInstanceState called")
+    }
+
     override fun onStart() {
         super.onStart()
-        dessertTimer.startTimer()
+
         Timber.i("onStart Called")
     }
 
@@ -188,7 +195,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        dessertTimer.stopTimer()
+
         Timber.i("onStop called")
     }
 
