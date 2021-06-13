@@ -28,6 +28,10 @@ import androidx.databinding.DataBindingUtil
 import com.example.android.dessertclicker.databinding.ActivityMainBinding
 import timber.log.Timber
 
+const val KEY_REVENUE = "key_revenue"
+const val KEY_DESSERTSOLD = "key_dessertsold"
+const val KEY_SECONDCOUNT = "key_dessertimer_second_count"
+
 class MainActivity : AppCompatActivity() {
 
 
@@ -80,6 +84,13 @@ class MainActivity : AppCompatActivity() {
 
         dessertTimer = DessertTimer(this.lifecycle)
 
+        if(savedInstanceState != null){
+          revenue =   savedInstanceState.getInt(KEY_REVENUE)
+          dessertsSold = savedInstanceState.getInt(KEY_DESSERTSOLD)
+          dessertTimer.secondsCount = savedInstanceState.getInt(KEY_SECONDCOUNT)
+            showCurrentDessert()
+        }
+
         // Set the TextViews to the right values
         binding.revenue = revenue
         binding.amountSold = dessertsSold
@@ -88,7 +99,10 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setImageResource(currentDessert.imageId)
     }
 
-
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Timber.i("onRestoreInstanceState Called")
+    }
 
     /**
      * Updates the score when the dessert is clicked. Possibly shows a new dessert.
@@ -160,6 +174,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putInt(KEY_REVENUE, revenue)
+        outState.putInt(KEY_DESSERTSOLD,dessertsSold)
+        outState.putInt(KEY_SECONDCOUNT,dessertTimer.secondsCount)
         Timber.i("onSaveInstanceState called")
     }
 
